@@ -28,7 +28,8 @@ public class TwitterConsole {
 
 	private static TwitterConsole twitterConsole() {
 		Console console = new Console();
-		CommandExecutor commandExecutor = new CommandExecutor();
+		CommandFactory commandFactory = new CommandFactory();
+		CommandExecutor commandExecutor = new CommandExecutor(commandFactory);
 		return new TwitterConsole(console, commandExecutor);
 	}
 
