@@ -6,6 +6,7 @@ import java.util.List;
 
 public class TwitterConsoleTestingDSL {
 
+	private static final String EXIT_COMMAND = "exit" + "\n";
 	private List<String> userCommands = new ArrayList<>();
 
 	public static TwitterConsoleTestingDSL start() {
@@ -43,10 +44,17 @@ public class TwitterConsoleTestingDSL {
 	}
 
 	private void sendUserCommandsToProcess(List<String> userCommands, Process process) {
+		addExitCommandTo(userCommands);
 		PrintWriter processWriter = writer(process);
 		for(String userCommand: userCommands) {
 			processWriter.write(userCommand);
 			processWriter.flush();
+		}
+	}
+
+	private void addExitCommandTo(List<String> userCommands) {
+		if (!userCommands.contains(EXIT_COMMAND)) {
+			userCommands.add(EXIT_COMMAND);
 		}
 	}
 
