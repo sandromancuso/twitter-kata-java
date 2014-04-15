@@ -4,25 +4,32 @@ import com.codurance.crafted_design.infrastructure.Console;
 
 public class TwitterConsole {
 
+	private static final String EXIT = "exit";
 	private final Console console;
+	private final CommandExecutor commandExecutor;
 
-	public TwitterConsole(Console console) {
+	public TwitterConsole(Console console, CommandExecutor commandExecutor) {
 		this.console = console;
+		this.commandExecutor = commandExecutor;
 	}
 
 	public void start() {
 		String userCommand = console.readline();
-		while(!userCommand.equals("exit")) {
+		while(!userCommand.equals(EXIT)) {
+			commandExecutor.execute(userCommand);
 			userCommand = console.readline();
 		}
 		console.write("bye!");
 	}
 
 	public static void main(String[] args) {
-		Console console = new Console();
-		TwitterConsole twitter = new TwitterConsole(console);
+		twitterConsole().start();
+	}
 
-		twitter.start();
+	private static TwitterConsole twitterConsole() {
+		Console console = new Console();
+		CommandExecutor commandExecutor = new CommandExecutor();
+		return new TwitterConsole(console, commandExecutor);
 	}
 
 }

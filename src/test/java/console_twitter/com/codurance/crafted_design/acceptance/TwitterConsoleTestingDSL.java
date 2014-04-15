@@ -6,9 +6,6 @@ import java.util.List;
 
 public class TwitterConsoleTestingDSL {
 
-	private static final String EXIT_COMMAND = "exit" + "\n";
-	private List<String> userCommands = new ArrayList<>();
-
 	public static TwitterConsoleTestingDSL start() {
 		return new TwitterConsoleTestingDSL();
 	}
@@ -70,7 +67,10 @@ public class TwitterConsoleTestingDSL {
 		return Runtime.getRuntime().exec(command);
 	}
 
-	public static BufferedReader processReader;
+	private List<String> userCommands = new ArrayList<>();
+
+	private static final String EXIT_COMMAND = "exit" + "\n";
+	private static BufferedReader processReader;
 
 	private static String TWITTER_CONSOLE_ON_COMMAND_LINE =
 							"/usr/bin/java -cp ./target/classes " +
