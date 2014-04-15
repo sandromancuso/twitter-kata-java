@@ -1,4 +1,4 @@
-package com.codurance.crafted_design;
+package com.codurance.crafted_design.command;
 
 public class CommandExecutor {
 

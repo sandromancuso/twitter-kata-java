@@ -1,6 +1,6 @@
 package console_twitter.com.codurance.crafted_design.unit;
 
-import com.codurance.crafted_design.CommandExecutor;
+import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.TwitterConsole;
 import com.codurance.crafted_design.infrastructure.Console;
 import org.junit.Before;

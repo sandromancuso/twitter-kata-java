@@ -1,8 +1,8 @@
-package console_twitter.com.codurance.crafted_design.unit;
+package console_twitter.com.codurance.crafted_design.unit.command;
 
-import com.codurance.crafted_design.Command;
-import com.codurance.crafted_design.CommandExecutor;
-import com.codurance.crafted_design.CommandFactory;
+import com.codurance.crafted_design.command.Command;
+import com.codurance.crafted_design.command.CommandExecutor;
+import com.codurance.crafted_design.command.CommandFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
