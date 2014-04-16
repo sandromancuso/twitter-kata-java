@@ -2,6 +2,7 @@ package com.codurance.crafted_design;
 
 import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.command.CommandFactory;
+import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
 import com.codurance.crafted_design.infrastructure.Console;
 
 public class TwitterConsole {
@@ -29,9 +30,12 @@ public class TwitterConsole {
 	}
 
 	private static TwitterConsole twitterConsole() {
+		AddPostUseCase addPostUseCase = new AddPostUseCase();
+
 		Console console = new Console();
-		CommandFactory commandFactory = new CommandFactory();
+		CommandFactory commandFactory = new CommandFactory(addPostUseCase);
 		CommandExecutor commandExecutor = new CommandExecutor(commandFactory);
+
 		return new TwitterConsole(console, commandExecutor);
 	}
 
