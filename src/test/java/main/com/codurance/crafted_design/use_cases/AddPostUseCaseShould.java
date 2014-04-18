@@ -1,7 +1,7 @@
 package main.com.codurance.crafted_design.use_cases;
 
 import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
-import com.codurance.crafted_design.core.use_cases.domain.user.UserRepository;
+import com.codurance.crafted_design.core.domain.user.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
