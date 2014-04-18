@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Console {
 
+	private static final String PROMT = "> ";
 	private final Scanner scanner;
 
 	public Console() {
@@ -11,6 +12,7 @@ public class Console {
 	}
 
 	public String readline() {
+		System.out.print(PROMT);
 		return scanner.nextLine();
 	}
 

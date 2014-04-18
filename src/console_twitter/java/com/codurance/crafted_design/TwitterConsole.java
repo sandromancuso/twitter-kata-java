@@ -3,6 +3,7 @@ package com.codurance.crafted_design;
 import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.command.CommandFactory;
 import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
+import com.codurance.crafted_design.core.use_cases.domain.user.UserRepository;
 import com.codurance.crafted_design.infrastructure.Console;
 
 public class TwitterConsole {
@@ -18,7 +19,7 @@ public class TwitterConsole {
 
 	public void start() {
 		String userCommand = console.readline();
-		while(!userCommand.equals(EXIT)) {
+		while(!EXIT.equals(userCommand)) {
 			commandExecutor.execute(userCommand);
 			userCommand = console.readline();
 		}
@@ -30,7 +31,8 @@ public class TwitterConsole {
 	}
 
 	private static TwitterConsole twitterConsole() {
-		AddPostUseCase addPostUseCase = new AddPostUseCase();
+		UserRepository userRepository = new UserRepository();
+		AddPostUseCase addPostUseCase = new AddPostUseCase(userRepository);
 
 		Console console = new Console();
 		CommandFactory commandFactory = new CommandFactory(addPostUseCase);
