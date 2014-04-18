@@ -1,5 +1,8 @@
 package com.codurance.crafted_design.infrastructure;
 
+import com.codurance.crafted_design.core.domain.Post;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class Console {
@@ -20,4 +23,6 @@ public class Console {
 		System.out.println(output);
 	}
 
+	public void write(List<Post> userPosts) {
+	}
 }

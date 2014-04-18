@@ -5,6 +5,7 @@ import com.codurance.crafted_design.command.PostCommand;
 import com.codurance.crafted_design.command.ReadCommand;
 import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
 import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
+import com.codurance.crafted_design.infrastructure.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,12 +24,13 @@ public class CommandFactoryShould {
 
 	@Mock private AddPostUseCase addPostUseCase;
 	@Mock private ReadPostsUseCase readPostsUseCase;
+	@Mock private Console console;
 
 	private CommandFactory commandFactory;
 
 	@Before
 	public void initialise() {
-		commandFactory = new CommandFactory(addPostUseCase, readPostsUseCase);
+		commandFactory = new CommandFactory(addPostUseCase, readPostsUseCase, console);
 	}
 
 	@Test

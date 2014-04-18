@@ -1,4 +1,4 @@
-package com.codurance.crafted_design.core.domain.user;
+package com.codurance.crafted_design.core.domain;
 
 public class UserRepository {
 

@@ -1,6 +1,6 @@
 package com.codurance.crafted_design.core.use_cases;
 
-import com.codurance.crafted_design.core.domain.user.UserRepository;
+import com.codurance.crafted_design.core.domain.UserRepository;
 
 public class AddPostUseCase {
 
