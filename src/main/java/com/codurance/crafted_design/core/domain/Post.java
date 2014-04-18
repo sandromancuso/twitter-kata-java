@@ -9,6 +9,14 @@ public class Post {
 		this.message = message;
 	}
 
+	public String username() {
+		return this.userName;
+	}
+
+	public String message() {
+		return this.message;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -30,4 +38,5 @@ public class Post {
 	public String toString() {
 		return "username: " + userName + " | message: " + message;
 	}
+
 }

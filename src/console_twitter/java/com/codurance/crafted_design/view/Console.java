@@ -23,6 +23,13 @@ public class Console {
 		System.out.println(output);
 	}
 
-	public void write(List<Post> userPosts) {
+	public void write(List<Post> posts) {
+		for (Post post : posts) {
+			write(lineFor(post));
+		}
+	}
+
+	private String lineFor(Post post) {
+		return post.username() + " - " + post.message();
 	}
 }
