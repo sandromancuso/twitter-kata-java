@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 public class ReadCommandShould {
 
 	private static final String USER_NAME = "Alice";
-	private static final List<Post> USER_POSTS = asList(new Post(), new Post());
+	private static final List<Post> USER_POSTS = asList(new Post("Alice", "Hi"));
 
 	@Mock private ReadPostsUseCase readPostsUseCase;
 	@Mock private Console console;

@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static main.com.codurance.crafted_design.PostBuilder.aPost;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -19,7 +20,7 @@ import static org.mockito.BDDMockito.given;
 public class ReadPostsUseCaseShould {
 
 	private static final String ALICE = "Alice";
-	private static final List<Post> ALICE_POSTS = asList(new Post());
+	private static final List<Post> ALICE_POSTS = asList(aPost());
 
 	@Mock private UserRepository userRepository;
 
