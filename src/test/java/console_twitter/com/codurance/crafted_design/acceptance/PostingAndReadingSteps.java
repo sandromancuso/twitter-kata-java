@@ -32,8 +32,8 @@ public class PostingAndReadingSteps {
 	public void alice_s_messages_are_displayed_in_reverse_chronological_order() {
 		String output = twitterConsole.output();
 		assertThat(output, is(
-				"Alice - It's a lovely day today \n" +
-				"Alice - Hello, my name is Alice \n" +
+				"Alice - It's a lovely day today" +
+				"Alice - Hello, my name is Alice" +
 				"bye!"));
 
 	}

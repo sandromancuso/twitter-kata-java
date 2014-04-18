@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Console {
 
-	private static final String PROMT = "> ";
+	public static final String PROMPT = "> ";
 	private final Scanner scanner;
 
 	public Console() {
@@ -15,7 +15,7 @@ public class Console {
 	}
 
 	public String readline() {
-		System.out.print(PROMT);
+		System.out.print(PROMPT);
 		return scanner.nextLine();
 	}
 

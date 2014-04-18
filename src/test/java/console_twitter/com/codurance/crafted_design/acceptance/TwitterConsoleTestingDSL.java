@@ -1,8 +1,13 @@
 package console_twitter.com.codurance.crafted_design.acceptance;
 
+import com.codurance.crafted_design.view.*;
+import com.codurance.crafted_design.view.Console;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.codurance.crafted_design.view.Console.PROMPT;
 
 public class TwitterConsoleTestingDSL {
 
@@ -27,7 +32,7 @@ public class TwitterConsoleTestingDSL {
 
 		sendUserCommandsToProcess(userCommands, process);
 
-		return readOutputFrom(process);
+		return removePrompt(readOutputFrom(process));
 	}
 
 	private String readOutputFrom(Process process) throws IOException {
@@ -48,6 +53,10 @@ public class TwitterConsoleTestingDSL {
 			processWriter.flush();
 		}
 	}
+	private String removePrompt(String output) {
+		return output.replaceAll(PROMPT, "");
+	}
+
 
 	private void addExitCommandTo(List<String> userCommands) {
 		if (!userCommands.contains(EXIT_COMMAND)) {
