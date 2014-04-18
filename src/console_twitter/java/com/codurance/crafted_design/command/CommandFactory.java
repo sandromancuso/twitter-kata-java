@@ -2,7 +2,7 @@ package com.codurance.crafted_design.command;
 
 import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
 import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
-import com.codurance.crafted_design.infrastructure.Console;
+import com.codurance.crafted_design.view.Console;
 
 import java.util.regex.Pattern;
 

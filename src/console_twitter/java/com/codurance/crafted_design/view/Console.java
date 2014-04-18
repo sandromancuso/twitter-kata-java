@@ -1,4 +1,4 @@
-package com.codurance.crafted_design.infrastructure;
+package com.codurance.crafted_design.view;
 
 import com.codurance.crafted_design.core.domain.Post;
 

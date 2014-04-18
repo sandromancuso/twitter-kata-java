@@ -3,7 +3,7 @@ package console_twitter.com.codurance.crafted_design.unit.command;
 import com.codurance.crafted_design.command.ReadCommand;
 import com.codurance.crafted_design.core.domain.Post;
 import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
-import com.codurance.crafted_design.infrastructure.Console;
+import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
