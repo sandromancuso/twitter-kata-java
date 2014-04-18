@@ -34,7 +34,7 @@ public class TwitterConsole {
 	private static TwitterConsole twitterConsole() {
 		UserRepository userRepository = new UserRepository();
 		AddPostUseCase addPostUseCase = new AddPostUseCase(userRepository);
-		ReadPostsUseCase readPostsUseCase = new ReadPostsUseCase();
+		ReadPostsUseCase readPostsUseCase = new ReadPostsUseCase(userRepository);
 
 		Console console = new Console();
 		CommandFactory commandFactory = new CommandFactory(addPostUseCase,
