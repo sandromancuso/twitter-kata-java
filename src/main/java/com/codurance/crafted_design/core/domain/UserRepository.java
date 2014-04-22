@@ -27,4 +27,8 @@ public class UserRepository {
 
 	public void addFollower(String followee, String follower) {
 	}
+
+	public List<Post> wallPostsFor(String userName) {
+		return null;
+	}
 }
