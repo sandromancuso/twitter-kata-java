@@ -18,6 +18,7 @@ public class CommandFactory {
 
 	private static final String POST_COMMAND_PATTERN = "(.*)\\s->\\s(.*)";
 	private static final String FOLLOW_COMMAND_PATTERN = "(.*)\\sfollows\\s(.*)";
+	private static final String WALL_COMMAND_PATTERN = "(.*)\\swall";
 
 	public CommandFactory(AddPostUseCase addPostUseCase,
 	                      ReadPostsUseCase readPostsUseCase,
@@ -34,6 +35,8 @@ public class CommandFactory {
 			return new PostCommand(addPostUseCase, userCommand);
 		} else if (matches(FOLLOW_COMMAND_PATTERN, userCommand)) {
 			return new FollowCommand(followUseCase, userCommand);
+		} else if (matches(WALL_COMMAND_PATTERN, userCommand)) {
+			return new WallCommand();
 		} else {
 			return new ReadCommand(readPostUseCase, console, userCommand);
 		}

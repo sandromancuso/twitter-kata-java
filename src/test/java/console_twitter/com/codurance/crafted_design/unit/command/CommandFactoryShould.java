@@ -1,9 +1,6 @@
 package console_twitter.com.codurance.crafted_design.unit.command;
 
-import com.codurance.crafted_design.command.CommandFactory;
-import com.codurance.crafted_design.command.FollowCommand;
-import com.codurance.crafted_design.command.PostCommand;
-import com.codurance.crafted_design.command.ReadCommand;
+import com.codurance.crafted_design.command.*;
 import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
 import com.codurance.crafted_design.core.use_cases.FollowUseCase;
 import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
@@ -24,6 +21,7 @@ public class CommandFactoryShould {
 	private static final String USER_POST_COMMAND = "Alice -> Hello.";
 	private static final String USER_READ_COMMAND = "Alice";
 	private static final String USER_FOLLOW_COMMAND = "Alice follows Bob";
+	private static final String WALL_COMMAND = "Alice wall";
 
 	@Mock private AddPostUseCase addPostUseCase;
 	@Mock private ReadPostsUseCase readPostsUseCase;
@@ -60,6 +58,13 @@ public class CommandFactoryShould {
 		Object command = commandFactory.create(USER_FOLLOW_COMMAND);
 
 	    assertThat(command, is(instanceOf(FollowCommand.class)));
+	}
+
+	@Test public void
+	create_a_wall_command() {
+		Object command = commandFactory.create(WALL_COMMAND);
+
+	    assertThat(command, is(instanceOf(WallCommand.class)));
 	}
 
 }
