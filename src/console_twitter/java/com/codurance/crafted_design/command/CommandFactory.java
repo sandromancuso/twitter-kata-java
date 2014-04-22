@@ -13,6 +13,7 @@ public class CommandFactory {
 	private final Console console;
 
 	private static final String POST_COMMAND_PATTERN = "(.*)\\s->\\s(.*)";
+	private static final String FOLLOW_COMMAND_PATTERN = "(.*)\\sfollows\\s(.*)";
 
 	public CommandFactory(AddPostUseCase addPostUseCase,
 	                      ReadPostsUseCase readPostsUseCase,
@@ -25,6 +26,8 @@ public class CommandFactory {
 	public Command create(String userCommand) {
 		if (Pattern.matches(POST_COMMAND_PATTERN, userCommand)) {
 			return new PostCommand(addPostUseCase, userCommand);
+		} else if (Pattern.matches(FOLLOW_COMMAND_PATTERN, userCommand)) {
+			return new FollowCommand();
 		} else {
 			return new ReadCommand(readPostUseCase, console, userCommand);
 		}
