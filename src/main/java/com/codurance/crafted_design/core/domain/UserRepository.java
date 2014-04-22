@@ -24,4 +24,7 @@ public class UserRepository {
 		}
 		return posts.get(userName);
 	}
+
+	public void addFollower(String followee, String follower) {
+	}
 }
