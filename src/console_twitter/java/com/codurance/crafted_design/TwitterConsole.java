@@ -4,6 +4,7 @@ import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.command.CommandFactory;
 import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
 import com.codurance.crafted_design.core.domain.UserRepository;
+import com.codurance.crafted_design.core.use_cases.FollowUseCase;
 import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
 import com.codurance.crafted_design.view.Console;
 
@@ -34,11 +35,13 @@ public class TwitterConsole {
 	private static TwitterConsole twitterConsole() {
 		UserRepository userRepository = new UserRepository();
 		AddPostUseCase addPostUseCase = new AddPostUseCase(userRepository);
+		FollowUseCase followUseCase = new FollowUseCase();
 		ReadPostsUseCase readPostsUseCase = new ReadPostsUseCase(userRepository);
 
 		Console console = new Console();
 		CommandFactory commandFactory = new CommandFactory(addPostUseCase,
 														   readPostsUseCase,
+														   followUseCase,
 														   console);
 		CommandExecutor commandExecutor = new CommandExecutor(commandFactory);
 
