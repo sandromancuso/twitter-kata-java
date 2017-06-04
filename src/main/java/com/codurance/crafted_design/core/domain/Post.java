@@ -1,5 +1,7 @@
 package com.codurance.crafted_design.core.domain;
 
+import java.util.Date;
+
 public class Post {
 	private final String userName;
 	private final String message;
@@ -39,4 +41,7 @@ public class Post {
 		return "username: " + userName + " | message: " + message;
 	}
 
+	public Date date() {
+		throw new UnsupportedOperationException();
+	}
 }

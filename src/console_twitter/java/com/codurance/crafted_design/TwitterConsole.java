@@ -2,8 +2,10 @@ package com.codurance.crafted_design;
 
 import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.command.CommandFactory;
-import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
+import com.codurance.crafted_design.core.domain.Clock;
 import com.codurance.crafted_design.core.domain.UserRepository;
+import com.codurance.crafted_design.core.infrastructure.SystemClock;
+import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
 import com.codurance.crafted_design.core.use_cases.FollowUseCase;
 import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
 import com.codurance.crafted_design.core.use_cases.WallUseCase;
@@ -34,7 +36,8 @@ public class TwitterConsole {
 	}
 
 	private static TwitterConsole twitterConsole() {
-		UserRepository userRepository = new UserRepository();
+		Clock clock = new SystemClock();
+		UserRepository userRepository = new UserRepository(clock);
 		AddPostUseCase addPostUseCase = new AddPostUseCase(userRepository);
 		FollowUseCase followUseCase = new FollowUseCase(userRepository);
 		WallUseCase wallUseCase = new WallUseCase(userRepository);

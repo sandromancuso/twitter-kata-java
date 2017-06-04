@@ -1,9 +1,9 @@
 package console_twitter.com.codurance.crafted_design.acceptance;
 
-import com.codurance.crafted_design.view.*;
-import com.codurance.crafted_design.view.Console;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 

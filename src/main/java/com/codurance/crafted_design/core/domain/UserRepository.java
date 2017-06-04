@@ -5,9 +5,15 @@ import java.util.*;
 public class UserRepository {
 
 	private static final List<Post> NO_POSTS = new ArrayList<>();
+	private static final Map<String, User> users = new HashMap<>();
 	public static final int HEAD = 0;
+	private final Clock clock;
 
 	private Map<String, List<Post>> posts = new HashMap<>();
+
+	public UserRepository(Clock clock) {
+		this.clock = clock;
+	}
 
 	public void createPost(String userName, String postMessage) {
 		List<Post> posts = postsFor(userName);
@@ -26,9 +32,40 @@ public class UserRepository {
 	}
 
 	public void addFollower(String followee, String follower) {
+		User user = userFor(followee);
+		User followerUser = userFor(follower);
+		followerUser.follows(user);
 	}
 
 	public List<Post> wallPostsFor(String userName) {
-		return null;
+		User user = userFor(userName);
+	    List<Post> wallPosts = postsBy(userName);
+		wallPosts.addAll(postsFrom(user.followingUsers()));
+		wallPosts.sort(byDate());
+		return wallPosts;
 	}
+
+	private List<Post> postsFrom(Collection<User> users) {
+		List<Post> allPosts = new ArrayList<>();
+		for (User user : users) {
+			allPosts.addAll(postsBy(user.userName()));
+		}
+		return allPosts;
+	}
+
+	private User userFor(String userName) {
+		User user = users.getOrDefault(userName, new User(userName));
+		users.put(userName, user);
+		return user;
+	}
+
+	private Comparator<Post> byDate() {
+		return new Comparator<Post>() {
+			@Override
+			public int compare(Post p1, Post p2) {
+				return p1.date().after(p2.date()) ? 1 : -1;
+			}
+		};
+	}
+
 }
