@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -20,7 +21,7 @@ import static org.mockito.Mockito.verify;
 public class ReadCommandShould {
 
 	private static final String USER_NAME = "Alice";
-	private static final List<Post> USER_POSTS = asList(new Post("Alice", "Hi"));
+	private static final List<Post> USER_POSTS = asList(new Post("Alice", "Hi", new Date()));
 
 	@Mock private ReadPostsUseCase readPostsUseCase;
 	@Mock private Console console;

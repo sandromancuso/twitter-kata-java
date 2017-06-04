@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -19,8 +20,9 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class WallCommandShould {
 
-	private static final List<Post> WALL_POSTS = asList(new Post("Alice", "Hi, I'm Alice"),
-														new Post("Bob", "Hi, I'm Bob"));
+	private static final Date NOW = new Date();
+	private static final List<Post> WALL_POSTS = asList(new Post("Alice", "Hi, I'm Alice", NOW),
+														new Post("Bob", "Hi, I'm Bob", NOW));
 
 	@Mock private Console console;
 	@Mock private WallUseCase wallUseCase;

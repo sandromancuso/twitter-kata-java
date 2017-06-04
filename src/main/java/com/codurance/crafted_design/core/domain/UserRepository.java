@@ -17,7 +17,7 @@ public class UserRepository {
 
 	public void createPost(String userName, String postMessage) {
 		List<Post> posts = postsFor(userName);
-		posts.add(HEAD, new Post(userName, postMessage));
+		posts.add(HEAD, new Post(userName, postMessage, clock.now()));
 	}
 
 	public List<Post> postsBy(String userName) {
@@ -63,7 +63,7 @@ public class UserRepository {
 		return new Comparator<Post>() {
 			@Override
 			public int compare(Post p1, Post p2) {
-				return p1.date().after(p2.date()) ? 1 : -1;
+				return p1.date().after(p2.date()) ? -1 : 1;
 			}
 		};
 	}

@@ -5,10 +5,12 @@ import java.util.Date;
 public class Post {
 	private final String userName;
 	private final String message;
+	private Date dateTime;
 
-	public Post(String userName, String message) {
+	public Post(String userName, String message, Date dateTime) {
 		this.userName = userName;
 		this.message = message;
+		this.dateTime = dateTime;
 	}
 
 	public String username() {
@@ -38,10 +40,14 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "username: " + userName + " | message: " + message;
+		return "Post{" +
+				"userName='" + userName + '\'' +
+				", message='" + message + '\'' +
+				", dateTime=" + dateTime +
+				'}';
 	}
 
 	public Date date() {
-		throw new UnsupportedOperationException();
+		return dateTime;
 	}
 }
