@@ -11,13 +11,13 @@ import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
 import com.codurance.crafted_design.core.use_cases.WallUseCase;
 import com.codurance.crafted_design.view.Console;
 
-public class TwitterConsole {
+public class Twitter {
 
 	private static final String EXIT = "exit";
 	private final Console console;
 	private final CommandExecutor commandExecutor;
 
-	public TwitterConsole(Console console, CommandExecutor commandExecutor) {
+	public Twitter(Console console, CommandExecutor commandExecutor) {
 		this.console = console;
 		this.commandExecutor = commandExecutor;
 	}
@@ -35,7 +35,7 @@ public class TwitterConsole {
 		twitterConsole().start();
 	}
 
-	private static TwitterConsole twitterConsole() {
+	private static Twitter twitterConsole() {
 		Clock clock = new SystemClock();
 		UserRepository userRepository = new UserRepository(clock);
 		AddPostUseCase addPostUseCase = new AddPostUseCase(userRepository);
@@ -51,7 +51,7 @@ public class TwitterConsole {
 														   console);
 		CommandExecutor commandExecutor = new CommandExecutor(commandFactory);
 
-		return new TwitterConsole(console, commandExecutor);
+		return new Twitter(console, commandExecutor);
 	}
 
 }

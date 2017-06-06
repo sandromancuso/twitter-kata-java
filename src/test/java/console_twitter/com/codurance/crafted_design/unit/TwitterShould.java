@@ -1,7 +1,7 @@
 package console_twitter.com.codurance.crafted_design.unit;
 
 import com.codurance.crafted_design.command.CommandExecutor;
-import com.codurance.crafted_design.TwitterConsole;
+import com.codurance.crafted_design.Twitter;
 import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,18 +13,18 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TwitterConsoleShould {
+public class TwitterShould {
 
 	private static final String SOME_POST_COMMAND = "Alice -> Hello";
 	private static final String EXIT = "exit";
 	@Mock private Console console;
 	@Mock private CommandExecutor commandExecutor;
 
-	private TwitterConsole twitter;
+	private Twitter twitter;
 
 	@Before
 	public void initialise() {
-		twitter = new TwitterConsole(console, commandExecutor);
+		twitter = new Twitter(console, commandExecutor);
 	}
 
 	@Test public void

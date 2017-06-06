@@ -116,7 +116,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.codurance.crafted_design.TwitterConsole</mainClass>
+							<mainClass>com.codurance.crafted_design.Twitter</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
