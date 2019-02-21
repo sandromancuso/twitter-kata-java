@@ -83,6 +83,6 @@ public class TwitterConsoleTestingDSL {
 
 	private static String TWITTER_CONSOLE_ON_COMMAND_LINE =
 							"/usr/bin/java -cp ./target/classes " +
-							"com.codurance.crafted_design.TwitterConsole";
+							"com.codurance.crafted_design.Twitter";
 
 }

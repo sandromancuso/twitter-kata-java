@@ -6,7 +6,9 @@ import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.BDDMockito.given;
@@ -15,7 +17,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class TwitterShould {
 
-	private static final String SOME_POST_COMMAND = "Alice -> Hello";
+	private static final String POST_COMMAND = "Alice -> Hello";
+	private static final String READ_COMMAND = "Alice";
 	private static final String EXIT = "exit";
 	@Mock private Console console;
 	@Mock private CommandExecutor commandExecutor;
@@ -29,7 +32,7 @@ public class TwitterShould {
 
 	@Test public void
 	terminate_when_an_exit_command_is_received() {
-		given(console.readline()).willReturn("a command", "exit");
+		given(console.readline()).willReturn(POST_COMMAND, EXIT);
 
 		twitter.start();
 
@@ -37,12 +40,15 @@ public class TwitterShould {
 	}
 
 	@Test public void
-	execute_the_user_command() {
-		given(console.readline()).willReturn(SOME_POST_COMMAND, EXIT);
+	execute_user_commands_until_user_exits_the_application() {
+		given(console.readline()).willReturn(POST_COMMAND, READ_COMMAND, EXIT);
 
 		twitter.start();
 
-		verify(commandExecutor).execute(SOME_POST_COMMAND);
+		InOrder inOrder = Mockito.inOrder(commandExecutor, console);
+		inOrder.verify(commandExecutor).execute(POST_COMMAND);
+		inOrder.verify(commandExecutor).execute(READ_COMMAND);
+		verify(console).write("bye!");
 	}
 
 }
