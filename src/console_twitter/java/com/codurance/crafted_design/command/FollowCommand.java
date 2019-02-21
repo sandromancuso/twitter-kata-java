@@ -17,8 +17,8 @@ public class FollowCommand implements Command {
 	@Override
 	public void execute() {
 		String[] userAndMessage = userCommand.split(FOLLOW_COMMAND);
-		String followee = userAndMessage[0];
-		String follower = userAndMessage[1];
+		String follower = userAndMessage[0];
+		String followee = userAndMessage[1];
 		followUseCase.follow(followee, follower);
 	}
 

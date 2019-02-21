@@ -21,7 +21,7 @@ public class FollowCommandShould {
 
 		followCommand.execute();
 
-		verify(followUseCase).follow("Alice", "Bob");
+		verify(followUseCase).follow("Bob", "Alice");
 	}
 
 }
