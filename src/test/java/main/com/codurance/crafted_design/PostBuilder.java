@@ -9,11 +9,15 @@ import java.util.List;
 public class PostBuilder {
 
 	public static Post aPost() {
-		return new Post("user", "message", LocalDateTime.now());
+		return aPost("user", "message", LocalDateTime.now());
 	}
 
 	public static Post aPost(String username, String message) {
-		return new Post(username, message, LocalDateTime.now());
+		return aPost(username, message, LocalDateTime.now());
+	}
+
+	public static Post aPost(String username, String message, LocalDateTime dateTime) {
+		return new Post(username, message, dateTime);
 	}
 
 	public static List<Post> posts(Post... posts) {

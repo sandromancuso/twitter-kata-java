@@ -5,6 +5,7 @@ import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static main.com.codurance.crafted_design.PostBuilder.*;
@@ -24,8 +25,8 @@ public class ConsoleShould {
 
 	@Test public void
 	should_write_posts() {
-		List<Post> posts = posts(aPost("Alice", "Nice day today"),
-								 aPost("Alice", "Hi, I'm Alice"));
+		List<Post> posts = posts(aPost("Alice", "Nice day today", LocalDateTime.now()),
+								 aPost("Alice", "Hi, I'm Alice", LocalDateTime.now()));
 
 		console.write(posts);
 
