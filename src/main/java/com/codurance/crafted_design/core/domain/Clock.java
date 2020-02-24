@@ -1,8 +1,9 @@
 package com.codurance.crafted_design.core.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public interface Clock {
 
-	public Date now();
+	LocalDateTime now();
+
 }

@@ -7,22 +7,23 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.util.Arrays.copyOfRange;
-import static java.util.Calendar.*;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserRepositoryShould {
 
 	private static final String UNKNOWN_USER = "unknown user";
+
+	private static final LocalDateTime TODAY_AT_10_00_00 = todayAt(10, 00, 00);
+	private static final LocalDateTime TODAY_AT_10_00_01 = todayAt(10, 00, 01);
+	private static final LocalDateTime TODAY_AT_10_05_10 = todayAt(10, 05, 10);
 
 	@Mock
 	private Clock clock;
@@ -86,9 +87,7 @@ public class UserRepositoryShould {
 
 	@Test public void
 	return_posts_from_users_and_users_she_follows_in_reverse_chronological_order() {
-		clockReturns(todayAt(10, 00, 00),
-					 todayAt(10, 00, 01),
-					 todayAt(10, 05, 10));
+		given(clock.now()).willReturn(TODAY_AT_10_00_00, TODAY_AT_10_00_01, TODAY_AT_10_05_10);
 
 		userRepository.addPost("Alice", "Hi, I'm Alice");
 		userRepository.addPost("Bob", "Hi, I'm Bob");
@@ -100,23 +99,13 @@ public class UserRepositoryShould {
 		List<Post> wallPosts = userRepository.wallPostsFor("Alice");
 
 	    assertThat(wallPosts.size(), is(3));
-	    assertThat(wallPosts.get(0), is(new Post("Charlie", "Hi, I'm Charlie", clock.now())));
-	    assertThat(wallPosts.get(1), is(new Post("Bob", "Hi, I'm Bob", clock.now())));
-	    assertThat(wallPosts.get(2), is(new Post("Alice", "Hi, I'm Alice", clock.now())));
+	    assertThat(wallPosts.get(0), is(new Post("Charlie", "Hi, I'm Charlie", TODAY_AT_10_05_10)));
+	    assertThat(wallPosts.get(1), is(new Post("Bob", "Hi, I'm Bob", TODAY_AT_10_00_01)));
+	    assertThat(wallPosts.get(2), is(new Post("Alice", "Hi, I'm Alice", TODAY_AT_10_00_00)));
 	}
 
-	private void clockReturns(Date... dates) {
-		Date head = dates[0];
-		Date[] tail = (dates.length > 1) ? copyOfRange(dates, 1, dates.length) : new Date[] {};
-		when(clock.now()).thenReturn(head, tail);
-	}
-
-	private Date todayAt(int hour, int minute, int second) {
-		Calendar today = Calendar.getInstance();
-		today.set(HOUR_OF_DAY, hour);
-		today.set(MINUTE, minute);
-		today.set(SECOND, second);
-		return today.getTime();
+	private static LocalDateTime todayAt(int hour, int minute, int second) {
+		return LocalDateTime.now().withHour(hour).withMinute(minute).withSecond(second).withNano(0);
 	}
 
 }

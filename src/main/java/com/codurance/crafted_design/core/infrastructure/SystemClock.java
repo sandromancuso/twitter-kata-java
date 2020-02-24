@@ -2,12 +2,12 @@ package com.codurance.crafted_design.core.infrastructure;
 
 import com.codurance.crafted_design.core.domain.Clock;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class SystemClock implements Clock {
 
 	@Override
-	public Date now() {
-		return new Date();
+	public LocalDateTime now() {
+		return LocalDateTime.now();
 	}
 }

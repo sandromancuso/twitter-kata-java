@@ -63,7 +63,7 @@ public class UserRepository {
 		return new Comparator<Post>() {
 			@Override
 			public int compare(Post p1, Post p2) {
-				return p1.date().after(p2.date()) ? -1 : 1;
+				return p1.dateTime().isAfter(p2.dateTime()) ? -1 : 1;
 			}
 		};
 	}

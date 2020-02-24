@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 public class ReadCommandShould {
 
 	private static final String USER_NAME = "Alice";
-	private static final List<Post> USER_POSTS = asList(new Post("Alice", "Hi", new Date()));
+	private static final List<Post> USER_POSTS = asList(new Post("Alice", "Hi", LocalDateTime.now()));
 
 	@Mock private UserRepository userRepository;
 	@Mock private Console console;
