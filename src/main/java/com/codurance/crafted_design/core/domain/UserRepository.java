@@ -2,6 +2,8 @@ package com.codurance.crafted_design.core.domain;
 
 import java.util.*;
 
+import static java.util.Collections.unmodifiableList;
+
 public class UserRepository {
 
 	private static final List<Post> NO_POSTS = new ArrayList<>();
@@ -21,7 +23,7 @@ public class UserRepository {
 	}
 
 	public List<Post> postsBy(String userName) {
-		return posts.getOrDefault(userName, NO_POSTS);
+		return unmodifiableList(posts.getOrDefault(userName, NO_POSTS));
 	}
 
 	private List<Post> postsFor(String userName) {
@@ -39,7 +41,7 @@ public class UserRepository {
 
 	public List<Post> wallPostsFor(String userName) {
 		User user = userFor(userName);
-	    List<Post> wallPosts = postsBy(userName);
+	    List<Post> wallPosts = new ArrayList(postsBy(userName));
 		wallPosts.addAll(postsFrom(user.followingUsers()));
 		wallPosts.sort(byDate());
 		return wallPosts;

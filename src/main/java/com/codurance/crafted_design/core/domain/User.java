@@ -1,6 +1,11 @@
 package com.codurance.crafted_design.core.domain;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
 public class User {
 	private final String userName;
@@ -25,21 +30,11 @@ public class User {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		User user = (User) o;
-
-		if (!following.equals(user.following)) return false;
-		if (!userName.equals(user.userName)) return false;
-
-		return true;
+		return reflectionEquals(this, o);
 	}
 
 	@Override
 	public int hashCode() {
-		int result = userName.hashCode();
-		result = 31 * result + following.hashCode();
-		return result;
+		return reflectionHashCode(this);
 	}
 }
