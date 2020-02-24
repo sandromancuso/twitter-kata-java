@@ -2,13 +2,13 @@ package console_twitter.com.codurance.crafted_design.unit.command;
 
 import com.codurance.crafted_design.command.WallCommand;
 import com.codurance.crafted_design.core.domain.Post;
-import com.codurance.crafted_design.core.use_cases.WallUseCase;
+import com.codurance.crafted_design.core.domain.UserRepository;
 import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Date;
 import java.util.List;
@@ -25,24 +25,25 @@ public class WallCommandShould {
 														new Post("Bob", "Hi, I'm Bob", NOW));
 
 	@Mock private Console console;
-	@Mock private WallUseCase wallUseCase;
+	@Mock private UserRepository userRepository;
+
 	private WallCommand wallCommand;
 
 	@Before
 	public void initialise() {
-		wallCommand = new WallCommand(wallUseCase, console, "Alice wall");
+		wallCommand = new WallCommand(userRepository, console, "Alice wall");
 	}
 
 	@Test public void
 	read_wall_posts() {
 		wallCommand.execute();
 
-		verify(wallUseCase).wallPostsFor("Alice");
+		verify(userRepository).wallPostsFor("Alice");
 	}
 
 	@Test public void
 	print_wall_posts() {
-		given(wallUseCase.wallPostsFor("Alice")).willReturn(WALL_POSTS);
+		given(userRepository.wallPostsFor("Alice")).willReturn(WALL_POSTS);
 
 		wallCommand.execute();
 

@@ -15,7 +15,7 @@ public class UserRepository {
 		this.clock = clock;
 	}
 
-	public void createPost(String userName, String postMessage) {
+	public void addPost(String userName, String postMessage) {
 		List<Post> posts = postsFor(userName);
 		posts.add(HEAD, new Post(userName, postMessage, clock.now()));
 	}

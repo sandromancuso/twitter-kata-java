@@ -43,8 +43,8 @@ public class UserRepositoryShould {
 
 	@Test public void
 	should_return_posts_for_the_specified_user() {
-		userRepository.createPost("Alice", "Hi, I'm Alice");
-		userRepository.createPost("Bob", "Hi, I'm Bob");
+		userRepository.addPost("Alice", "Hi, I'm Alice");
+		userRepository.addPost("Bob", "Hi, I'm Bob");
 
 		List<Post> posts = userRepository.postsBy("Bob");
 
@@ -54,8 +54,8 @@ public class UserRepositoryShould {
 
 	@Test public void
 	return_posts_in_reverse_chronological_order() {
-		userRepository.createPost("Alice", "Hi, I'm Alice");
-		userRepository.createPost("Alice", "Hello again");
+		userRepository.addPost("Alice", "Hi, I'm Alice");
+		userRepository.addPost("Alice", "Hello again");
 
 		List<Post> posts = userRepository.postsBy("Alice");
 
@@ -65,7 +65,7 @@ public class UserRepositoryShould {
 
 	@Test public void
 	return_just_a_users_post_when_user_does_not_follow_anyone() {
-		userRepository.createPost("Alice", "Hi, I'm Alice");
+		userRepository.addPost("Alice", "Hi, I'm Alice");
 
 		List<Post> posts = userRepository.wallPostsFor("Alice");
 
@@ -75,7 +75,7 @@ public class UserRepositoryShould {
 
 	@Test public void
 	return_posts_from_the_users_that_a_specified_user_follows() {
-		userRepository.createPost("Alice", "Hi, I'm Alice");
+		userRepository.addPost("Alice", "Hi, I'm Alice");
 		userRepository.addFollower("Alice", "Bob");
 
 		List<Post> wallPosts = userRepository.wallPostsFor("Bob");
@@ -90,9 +90,9 @@ public class UserRepositoryShould {
 					 todayAt(10, 00, 01),
 					 todayAt(10, 05, 10));
 
-		userRepository.createPost("Alice", "Hi, I'm Alice");
-		userRepository.createPost("Bob", "Hi, I'm Bob");
-		userRepository.createPost("Charlie", "Hi, I'm Charlie");
+		userRepository.addPost("Alice", "Hi, I'm Alice");
+		userRepository.addPost("Bob", "Hi, I'm Bob");
+		userRepository.addPost("Charlie", "Hi, I'm Charlie");
 		
 		userRepository.addFollower("Bob", "Alice");
 		userRepository.addFollower("Charlie", "Alice");

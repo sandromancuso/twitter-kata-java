@@ -1,16 +1,13 @@
 package console_twitter.com.codurance.crafted_design.unit.command;
 
 import com.codurance.crafted_design.command.*;
-import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
-import com.codurance.crafted_design.core.use_cases.FollowUseCase;
-import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
-import com.codurance.crafted_design.core.use_cases.WallUseCase;
+import com.codurance.crafted_design.core.domain.UserRepository;
 import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.core.Is.is;
@@ -24,21 +21,14 @@ public class CommandFactoryShould {
 	private static final String USER_FOLLOW_COMMAND = "Alice follows Bob";
 	private static final String WALL_COMMAND = "Alice wall";
 
-	@Mock private AddPostUseCase addPostUseCase;
-	@Mock private ReadPostsUseCase readPostsUseCase;
-	@Mock private FollowUseCase followUseCase;
-	@Mock private WallUseCase wallUseCase;
+	@Mock private UserRepository userRepository;
 	@Mock private Console console;
 
 	private CommandFactory commandFactory;
 
 	@Before
 	public void initialise() {
-		commandFactory = new CommandFactory(addPostUseCase,
-											readPostsUseCase,
-											followUseCase,
-											wallUseCase,
-											console);
+		commandFactory = new CommandFactory(userRepository, console);
 	}
 
 	@Test

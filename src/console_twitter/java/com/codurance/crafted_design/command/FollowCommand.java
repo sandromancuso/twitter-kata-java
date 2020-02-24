@@ -1,16 +1,16 @@
 package com.codurance.crafted_design.command;
 
-import com.codurance.crafted_design.core.use_cases.FollowUseCase;
+import com.codurance.crafted_design.core.domain.UserRepository;
 
 public class FollowCommand implements Command {
 
 	private static final String FOLLOW_COMMAND = " follows ";
 
-	private final FollowUseCase followUseCase;
+	private UserRepository userRepository;
 	private final String userCommand;
 
-	public FollowCommand(FollowUseCase followUseCase, String userCommand) {
-		this.followUseCase = followUseCase;
+	public FollowCommand(UserRepository userRepository, String userCommand) {
+		this.userRepository = userRepository;
 		this.userCommand = userCommand;
 	}
 
@@ -19,7 +19,7 @@ public class FollowCommand implements Command {
 		String[] userAndMessage = userCommand.split(FOLLOW_COMMAND);
 		String follower = userAndMessage[0];
 		String followee = userAndMessage[1];
-		followUseCase.follow(followee, follower);
+		userRepository.addFollower(followee, follower);
 	}
 
 }

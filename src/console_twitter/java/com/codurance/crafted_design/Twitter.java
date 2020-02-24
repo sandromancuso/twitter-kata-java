@@ -5,10 +5,6 @@ import com.codurance.crafted_design.command.CommandFactory;
 import com.codurance.crafted_design.core.domain.Clock;
 import com.codurance.crafted_design.core.domain.UserRepository;
 import com.codurance.crafted_design.core.infrastructure.SystemClock;
-import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
-import com.codurance.crafted_design.core.use_cases.FollowUseCase;
-import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
-import com.codurance.crafted_design.core.use_cases.WallUseCase;
 import com.codurance.crafted_design.view.Console;
 
 public class Twitter {
@@ -38,17 +34,8 @@ public class Twitter {
 	private static Twitter twitterConsole() {
 		Clock clock = new SystemClock();
 		UserRepository userRepository = new UserRepository(clock);
-		AddPostUseCase addPostUseCase = new AddPostUseCase(userRepository);
-		FollowUseCase followUseCase = new FollowUseCase(userRepository);
-		WallUseCase wallUseCase = new WallUseCase(userRepository);
-		ReadPostsUseCase readPostsUseCase = new ReadPostsUseCase(userRepository);
-
 		Console console = new Console();
-		CommandFactory commandFactory = new CommandFactory(addPostUseCase,
-														   readPostsUseCase,
-														   followUseCase,
-														   wallUseCase,
-														   console);
+		CommandFactory commandFactory = new CommandFactory(userRepository, console);
 		CommandExecutor commandExecutor = new CommandExecutor(commandFactory);
 
 		return new Twitter(console, commandExecutor);

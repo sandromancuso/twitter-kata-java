@@ -2,13 +2,13 @@ package console_twitter.com.codurance.crafted_design.unit.command;
 
 import com.codurance.crafted_design.command.ReadCommand;
 import com.codurance.crafted_design.core.domain.Post;
-import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
+import com.codurance.crafted_design.core.domain.UserRepository;
 import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Date;
 import java.util.List;
@@ -23,26 +23,26 @@ public class ReadCommandShould {
 	private static final String USER_NAME = "Alice";
 	private static final List<Post> USER_POSTS = asList(new Post("Alice", "Hi", new Date()));
 
-	@Mock private ReadPostsUseCase readPostsUseCase;
+	@Mock private UserRepository userRepository;
 	@Mock private Console console;
 
 	private ReadCommand readCommand;
 
 	@Before
 	public void initialise() {
-		readCommand = new ReadCommand(readPostsUseCase, console, USER_NAME);
+		readCommand = new ReadCommand(userRepository, console, USER_NAME);
 	}
 
 	@Test public void
 	should_read_posts_from_a_user() {
 		readCommand.execute();
 
-		verify(readPostsUseCase).postsBy(USER_NAME);
+		verify(userRepository).postsBy(USER_NAME);
 	}
 
 	@Test public void
 	should_print_posts() {
-		given(readPostsUseCase.postsBy(USER_NAME)).willReturn(USER_POSTS);
+		given(userRepository.postsBy(USER_NAME)).willReturn(USER_POSTS);
 
 		readCommand.execute();
 

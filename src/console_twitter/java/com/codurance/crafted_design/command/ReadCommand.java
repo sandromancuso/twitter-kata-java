@@ -1,22 +1,22 @@
 package com.codurance.crafted_design.command;
 
-import com.codurance.crafted_design.core.use_cases.ReadPostsUseCase;
+import com.codurance.crafted_design.core.domain.UserRepository;
 import com.codurance.crafted_design.view.Console;
 
 public class ReadCommand implements Command {
 
-	private final ReadPostsUseCase readPostsUseCase;
+	private final UserRepository userRepository;
 	private final String userName;
 	private final Console console;
 
-	public ReadCommand(ReadPostsUseCase readPostsUseCase, Console console, String userName) {
- 	    this.readPostsUseCase = readPostsUseCase;
+	public ReadCommand(UserRepository userRepository, Console console, String userName) {
+ 	    this.userRepository = userRepository;
 		this.console = console;
 		this.userName = userName;
 	}
 
 	@Override
 	public void execute() {
-		console.write(readPostsUseCase.postsBy(userName));
+		console.write(userRepository.postsBy(userName));
 	}
 }

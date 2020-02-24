@@ -1,7 +1,7 @@
 package console_twitter.com.codurance.crafted_design.unit;
 
-import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.Twitter;
+import com.codurance.crafted_design.command.CommandExecutor;
 import com.codurance.crafted_design.view.Console;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -20,6 +20,7 @@ public class TwitterShould {
 	private static final String POST_COMMAND = "Alice -> Hello";
 	private static final String READ_COMMAND = "Alice";
 	private static final String EXIT = "exit";
+	
 	@Mock private Console console;
 	@Mock private CommandExecutor commandExecutor;
 

@@ -1,15 +1,15 @@
 package com.codurance.crafted_design.command;
 
-import com.codurance.crafted_design.core.use_cases.AddPostUseCase;
+import com.codurance.crafted_design.core.domain.UserRepository;
 
 public class PostCommand implements Command {
 
 	private static final String POST_COMMAND = " -> ";
 	private final String userCommand;
-	private final AddPostUseCase addPostUseCase;
+	private final UserRepository userRepository;
 
-	public PostCommand(AddPostUseCase addPostUseCase, String userCommand) {
-		this.addPostUseCase = addPostUseCase;
+	public PostCommand(UserRepository userRepository, String userCommand) {
+		this.userRepository = userRepository;
 		this.userCommand = userCommand;
 	}
 
@@ -18,6 +18,6 @@ public class PostCommand implements Command {
 		String[] userAndMessage = userCommand.split(POST_COMMAND);
 		String user = userAndMessage[0];
 		String message = userAndMessage[1];
-		addPostUseCase.addPost(user, message);
+		userRepository.addPost(user, message);
 	}
 }
